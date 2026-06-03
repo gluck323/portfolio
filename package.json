@@ -8,11 +8,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "new:work": "node scripts/new-work.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-types": "wrangler types",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.6.1",
     "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/crimson-pro": "^5.2.8",
     "@fontsource-variable/inter": "^5.2.8",
@@ -22,5 +25,11 @@
     "astro": "^6.4.3",
     "fast-xml-parser": "^5.8.0",
     "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.97.0"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
