@@ -93,9 +93,9 @@ npm run dev      # http://localhost:4321 でプレビュー
 npm run build    # 本番ビルド（dist/）。note記事もここで取得される
 ```
 
-公開（初回ログインのみ手動）:
+公開: **`git push` するだけ**（Cloudflare Pages がGitHub連携で自動ビルド＆デプロイ）。
+手動で出す場合のみ:
 ```bash
-npx wrangler login
 npm run build
-npx wrangler pages deploy dist --project-name dolphy
+npx wrangler pages deploy dist --project-name dolphythewolf
 ```
