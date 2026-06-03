@@ -1,12 +1,52 @@
 {
   "items": [
-    { "title": "音楽ゲーム合同誌「音GEN」に寄稿", "date": "2025-12-01", "type": "contribution", "org": "同人合同誌", "url": "" },
-    { "title": "第14回 音ゲー早慶戦 ロゴ制作を監修", "date": "2025-10-01", "type": "other", "org": "音ゲー早慶戦", "url": "" },
-    { "title": "Webサービス「Bemani Keio Meister」をリリース", "date": "2025-06-01", "type": "other", "org": "音ゲー早慶戦 対策サービス", "url": "" },
-    { "title": "音ゲー情報同人誌「オトゲラボ。」の取材を受ける", "date": "2025-05-01", "type": "other", "org": "オトゲラボ。", "url": "" },
-    { "title": "部誌「BBD MAGAZINE」創刊号に寄稿", "date": "2024-12-01", "type": "contribution", "org": "早稲田大学 BBD", "url": "" },
-    { "title": "オリジナル楽曲「メメント・モリ」「死.exe」をリリース", "date": "2024-12-01", "type": "award", "org": "アドベントカレンダー投票 1位", "url": "" },
-    { "title": "春・秋IR プロモーションムービーを制作", "date": "2024-06-01", "type": "other", "org": "早稲田大学 BBD", "url": "" },
-    { "title": "ランキング自動生成ツールを共同制作", "date": "2023-09-01", "type": "other", "org": "Discord 連携ツール", "url": "" }
+    {
+      "title": "音楽ゲーム合同誌「音GEN」に寄稿",
+      "date": "2025-09-02",
+      "type": "contribution",
+      "org": "同人合同誌",
+      "url": "https://booth.pm/ja/items/7379893"
+    },
+    {
+      "title": "第14回 音ゲー早慶戦 ロゴ制作監修",
+      "date": "2025-09-28",
+      "type": "other",
+      "org": "音ゲー早慶戦",
+      "url": "https://x.com/sk_battle_/status/1972114926329303349"
+    },
+    {
+      "title": "Webアプリーケーション「Bemani Keio Meister」をリリース",
+      "date": "2025-07-26",
+      "type": "other",
+      "org": "早慶戦用対策アプリーケーション",
+      "url": "https://sky-po.net/iidx-score-manager/public/index.html"
+    },
+    {
+      "title": "部誌創刊号「BBD MAGAZINE 2024 Autamn」に寄稿",
+      "date": "2024-10-01",
+      "type": "contribution",
+      "org": "BBD",
+      "url": "https://x.com/BBD_w/status/1983806077922599204"
+    },
+    {
+      "title": "執筆した記事の「メメント・モリ」が優勝",
+      "date": "2025-01-14",
+      "type": "award",
+      "org": "2024 KBD合同 Advent Calender投票 優勝",
+      "url": "https://note.com/japanese_goblin/n/nf9ed69cf0289"
+    },
+    {
+      "title": "春・秋IR プロモーションムービーを制作",
+      "date": "2024-06-03",
+      "type": "other",
+      "org": "BBD"
+    },
+    {
+      "title": "「KBD HOTOKE ARENA SEASON2」特設サイトを公開",
+      "date": "2025-11-11",
+      "type": "other",
+      "org": "KBD HOTOKE ARENA SEASON2",
+      "url": "https://iidx-hotoke-arena.vercel.app/"
+    }
   ]
 }
