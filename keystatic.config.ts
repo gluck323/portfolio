@@ -1,4 +1,4 @@
-import { config, fields, singleton } from '@keystatic/core';
+import { config, fields, singleton, collection } from '@keystatic/core';
 
 // ローカル編集UI（/keystatic）の定義。
 // データは src/data/cms/*.json に保存され、サイト側は src/data/*.ts がそれを読む。
@@ -7,8 +7,38 @@ export default config({
   ui: {
     brand: { name: 'Portfolio' },
     navigation: {
-      コンテンツ: ['site', 'achievements', 'talks'],
+      コンテンツ: ['site', 'work', 'achievements', 'talks'],
     },
+  },
+  collections: {
+    work: collection({
+      label: '作品 (Work)',
+      path: 'src/content/work/*',
+      slugField: 'title',
+      format: { contentField: 'content' },
+      columns: ['title', 'year'],
+      schema: {
+        title: fields.slug({ name: { label: 'タイトル' } }),
+        summary: fields.text({ label: '一覧用の短い説明', multiline: true }),
+        year: fields.text({ label: '年（例: 2026.02）' }),
+        cover: fields.image({
+          label: 'カバー画像（任意）',
+          description: '一覧と詳細に表示。無ければ文字だけのプレースホルダー',
+          directory: 'public/images/work',
+          publicPath: '/images/work/',
+        }),
+        demoUrl: fields.url({ label: 'デモURL（任意）' }),
+        repoUrl: fields.url({ label: 'GitHub URL（任意）' }),
+        tech: fields.array(fields.text({ label: '技術' }), {
+          label: '使用技術',
+          itemLabel: (p) => p.value || '技術',
+        }),
+        featured: fields.checkbox({ label: 'トップ上位に表示', defaultValue: false }),
+        order: fields.integer({ label: '並び順（小さいほど先）', defaultValue: 10 }),
+        draft: fields.checkbox({ label: '非公開（下書き）', defaultValue: false }),
+        content: fields.markdoc({ label: '本文（ケーススタディ）' }),
+      },
+    }),
   },
   singletons: {
     site: singleton({

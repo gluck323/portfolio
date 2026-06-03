@@ -4,6 +4,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 import sitemap from '@astrojs/sitemap';
+import markdoc from '@astrojs/markdoc';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 
@@ -21,5 +22,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), ...(enableKeystatic ? [react(), keystatic()] : [])]
+  integrations: [sitemap(), markdoc(), ...(enableKeystatic ? [react(), keystatic()] : [])]
 });

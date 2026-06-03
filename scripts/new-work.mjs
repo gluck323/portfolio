@@ -26,7 +26,7 @@ const title = titleParts.join(' ').trim() || slug;
 const year = new Date().getFullYear(); // 生成日の年（必要なら編集）
 
 const dir = join(process.cwd(), 'src', 'content', 'work');
-const file = join(dir, `${slug}.md`);
+const file = join(dir, `${slug}.mdoc`);
 
 if (existsSync(file)) {
   console.error(`既に存在します: ${file}`);
@@ -44,7 +44,6 @@ tech: ["React", "TypeScript"]
 featured: false
 order: 10
 draft: false
-# cover: ../../assets/work/${slug}.png
 ---
 
 ## 概要
@@ -57,5 +56,5 @@ draft: false
 `;
 
 writeFileSync(file, body, 'utf8');
-console.log(`✓ 作成しました: src/content/work/${slug}.md`);
-console.log('  → 内容を編集して、npm run dev で確認できます。');
+console.log(`✓ 作成しました: src/content/work/${slug}.mdoc`);
+console.log('  → /keystatic の「作品 (Work)」、または直接ファイルで編集できます。');
