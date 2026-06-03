@@ -1,0 +1,11 @@
+{
+  // 静的サイト（Astro の dist）を Cloudflare Workers の「静的アセットのみ」で配信する設定。
+  // これが無いと `wrangler deploy` が勝手に SSR アダプタ(@astrojs/cloudflare)とKVセッションを
+  // 追加してデプロイに失敗するため、明示的に固定している。
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "dolphythewolf",
+  "compatibility_date": "2026-06-01",
+  "assets": {
+    "directory": "./dist"
+  }
+}
