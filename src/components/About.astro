@@ -5,24 +5,43 @@ const paragraphs = (site.aboutBody ?? '')
   .map((s) => s.trim())
   .filter(Boolean);
 ---
-<div class="grid grid-cols-12 gap-x-6 gap-y-10">
-  <div class="col-span-12 md:col-span-7 md:col-start-1">
-    <p class="font-display text-2xl leading-snug text-ink md:text-[2rem]">{site.aboutLead}</p>
-    <div class="measure mt-8 space-y-4 text-muted">
-      {paragraphs.map((p) => <p>{p}</p>)}
-    </div>
-  </div>
+<div class="grid grid-cols-12 gap-x-6 gap-y-12">
+  <!-- 左: 写真 + メタ -->
+  <div class="col-span-12 md:col-span-4">
+    {site.avatar && (
+      <img
+        src={site.avatar}
+        alt={site.name}
+        width="480"
+        height="600"
+        loading="lazy"
+        class="w-full max-w-[300px] border border-rule object-cover"
+        style="aspect-ratio: 4 / 5; border-radius: 2px;"
+      />
+    )}
 
-  <div class="col-span-12 md:col-span-4 md:col-start-9">
-    <p class="label">Focus</p>
-    <ul class="mt-4 space-y-2 text-muted">
-      {site.focus.map((f) => <li>{f}</li>)}
-    </ul>
+    {site.tools.length > 0 && (
+      <Fragment>
+        <p class="label mt-8">Tools</p>
+        <ul class="mt-4 space-y-1.5 text-sm text-muted">
+          {site.tools.map((t) => <li>{t}</li>)}
+        </ul>
+      </Fragment>
+    )}
+
     <p class="label mt-8">Elsewhere</p>
     <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2">
       {site.socials.map((s) => (
         <li><a href={s.href} target="_blank" rel="noopener noreferrer" class="label link hover:text-ink">{s.label}</a></li>
       ))}
     </ul>
+  </div>
+
+  <!-- 右: 自己紹介 / 経歴 -->
+  <div class="col-span-12 md:col-span-7 md:col-start-6">
+    <p class="font-display text-2xl leading-snug text-ink md:text-[2rem]">{site.aboutLead}</p>
+    <div class="measure mt-8 space-y-4 text-muted">
+      {paragraphs.map((p) => <p>{p}</p>)}
+    </div>
   </div>
 </div>

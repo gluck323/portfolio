@@ -22,7 +22,8 @@
   ],
   "aboutLead": "こんにちは。",
   "aboutBody": "作ったもの（Work）、書いたもの（Writing / note）、これまでの実績（Recognition）をこのサイトに集約しています。",
-  "focus": [
+  "avatar": null,
+  "tools": [
     "Unity",
     "AfterEffects",
     "Premiere Pro",

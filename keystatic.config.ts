@@ -30,11 +30,17 @@ export default config({
           }),
           { label: 'SNS / リンク', itemLabel: (p) => p.fields.label.value || 'リンク' }
         ),
-        aboutLead: fields.text({ label: 'About 見出し文', multiline: true }),
-        aboutBody: fields.text({ label: 'About 本文（空行で段落を分ける）', multiline: true }),
-        focus: fields.array(fields.text({ label: '項目' }), {
-          label: 'Focus（得意分野）',
-          itemLabel: (p) => p.value || '項目',
+        avatar: fields.image({
+          label: 'プロフィール写真 / アイコン',
+          description: '1枚アップロードすると About に表示されます',
+          directory: 'public/images/profile',
+          publicPath: '/images/profile/',
+        }),
+        aboutLead: fields.text({ label: 'About 見出し文（挨拶など）', multiline: true }),
+        aboutBody: fields.text({ label: 'About 本文 / 経歴（空行で段落を分ける）', multiline: true }),
+        tools: fields.array(fields.text({ label: 'ツール / ソフト' }), {
+          label: 'Tools（使用ツール・ソフト）',
+          itemLabel: (p) => p.value || 'ツール',
         }),
       },
     }),
@@ -54,7 +60,7 @@ export default config({
                 { label: '受賞 / 1位 (Award)', value: 'award' },
                 { label: '寄稿 (Writing)', value: 'contribution' },
                 { label: '登壇 (Talk)', value: 'talk' },
-                { label: 'その他 / 制作・出演 (—)', value: 'other' },
+                { label: '制作・その他 (Project)', value: 'other' },
               ],
               defaultValue: 'other',
             }),

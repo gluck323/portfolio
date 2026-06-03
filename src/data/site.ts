@@ -4,10 +4,26 @@ import cms from './cms/site.json';
 
 export type Social = { label: string; href: string };
 
-export const site = {
-  ...cms,
+export interface SiteData {
+  name: string;
+  shortName: string;
+  tagline: string;
+  intro: string;
+  description: string;
+  email: string;
+  noteUsername: string;
+  socials: Social[];
+  avatar: string | null;
+  aboutLead: string;
+  aboutBody: string;
+  tools: string[];
+  locale: string;
+}
+
+export const site: SiteData = {
+  ...(cms as unknown as Omit<SiteData, 'locale'>),
   locale: 'ja',
-} as typeof cms & { locale: string };
+};
 
 // グローバルナビ（ページ内アンカー。構造なのでコード側で管理）
 export const nav: { label: string; href: string }[] = [
