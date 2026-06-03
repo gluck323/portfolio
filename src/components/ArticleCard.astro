@@ -1,0 +1,25 @@
+---
+import type { ArticleCardData } from '../lib/note';
+type Props = ArticleCardData;
+const { title, url, excerpt, date, source } = Astro.props;
+
+function fmt(iso?: string) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return '';
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())}`;
+}
+---
+<article class="group border-t border-rule py-7">
+  <a href={url} target="_blank" rel="noopener noreferrer" class="block">
+    <div class="flex items-baseline justify-between gap-4">
+      <span class="label">{source}</span>
+      {date && <span class="label">{fmt(date)}</span>}
+    </div>
+    <h3 class="mt-3 text-xl md:text-2xl">
+      <span class="link">{title}</span>
+    </h3>
+    {excerpt && <p class="measure mt-2 text-sm text-muted">{excerpt}</p>}
+  </a>
+</article>

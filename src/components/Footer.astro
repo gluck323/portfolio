@@ -1,0 +1,22 @@
+---
+import { site } from '../data/site';
+const year = 2026; // ビルド時固定（Date.nowは使わない方針）
+---
+<footer class="border-t border-rule">
+  <div class="shell flex flex-col gap-8 py-16 md:flex-row md:items-end md:justify-between">
+    <div>
+      <p class="font-display text-2xl text-ink">{site.name}<span class="text-accent">.</span></p>
+      <p class="label mt-3">{site.intro}</p>
+    </div>
+
+    <ul class="flex flex-wrap gap-x-6 gap-y-2">
+      {site.socials.map((s) => (
+        <li><a href={s.href} class="label link hover:text-ink" target="_blank" rel="noopener noreferrer">{s.label}</a></li>
+      ))}
+      <li><a href={`mailto:${site.email}`} class="label link hover:text-ink">Email</a></li>
+    </ul>
+  </div>
+  <div class="shell pb-10">
+    <p class="label">© {year} {site.name}. Built with Astro.</p>
+  </div>
+</footer>

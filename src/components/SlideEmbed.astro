@@ -1,0 +1,25 @@
+---
+// 発表スライドのレスポンシブ埋め込み（Speaker Deck / Docswell / SlideShare / Google Slides）
+interface Props {
+  provider: 'speakerdeck' | 'docswell' | 'slideshare' | 'googleslides';
+  embedUrl: string; // 各社の埋め込み用URL（providerに応じて）
+  title: string;
+  ratio?: string; // 既定 16 / 9
+}
+const { provider, embedUrl, title, ratio = '16 / 9' } = Astro.props;
+---
+<div
+  class="slide-embed w-full overflow-hidden border border-rule bg-paper"
+  style={`aspect-ratio: ${ratio}; border-radius: 2px;`}
+  data-provider={provider}
+>
+  <iframe
+    src={embedUrl}
+    title={title}
+    class="h-full w-full"
+    loading="lazy"
+    allow="fullscreen"
+    allowfullscreen
+    frameborder="0"
+  ></iframe>
+</div>

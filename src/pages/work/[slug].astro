@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { title, summary, year, cover, demoUrl, repoUrl, tech } = entry.data;
+const { Content } = await render(entry);
+---
+<BaseLayout title={title} description={summary}>
+  <article class="shell py-20 md:py-28">
+    <a href="/#work" class="label link inline-block hover:text-ink">← Work</a>
+
+    <header class="mt-10 border-t border-rule pt-10">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+        {year && <span class="label">{year}</span>}
+        {tech.map((t) => <span class="label">· {t}</span>)}
+      </div>
+      <h1 class="mt-5 max-w-[18ch] font-display text-4xl leading-tight md:text-6xl">{title}</h1>
+      <p class="measure mt-6 text-lg text-muted">{summary}</p>
+
+      <div class="mt-7 flex flex-wrap gap-x-5 gap-y-1">
+        {demoUrl && <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="btn">Visit ↗</a>}
+        {repoUrl && <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="label link hover:text-ink">Code ↗</a>}
+      </div>
+    </header>
+
+    {cover && (
+      <div class="mt-12 overflow-hidden border border-rule" style="border-radius: 2px;">
+        <Image src={cover} alt={title} width={1400} height={875} class="w-full object-cover" />
+      </div>
+    )}
+
+    <div class="prose-editorial measure mt-14">
+      <Content />
+    </div>
+  </article>
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+// ダークモード切替ボタン。ロジックは BaseLayout の委譲ハンドラ側。
+---
+<button
+  type="button"
+  data-theme-toggle
+  aria-label="ライト／ダークを切り替え"
+  class="grid h-9 w-9 place-items-center text-ink/70 transition-colors hover:text-accent"
+>
+  <!-- sun（ライト時に表示） -->
+  <svg class="h-[18px] w-[18px] dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+    <circle cx="12" cy="12" r="4.2" />
+    <path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8 6 18M18 6l1.8-1.8" stroke-linecap="round" />
+  </svg>
+  <!-- moon（ダーク時に表示） -->
+  <svg class="hidden h-[18px] w-[18px] dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+    <path d="M20 14.2A8 8 0 0 1 9.8 4 7 7 0 1 0 20 14.2Z" stroke-linejoin="round" />
+  </svg>
+</button>

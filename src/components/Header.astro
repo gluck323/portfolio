@@ -1,0 +1,22 @@
+---
+import { site, nav } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+---
+<header class="sticky top-0 z-40 border-b border-rule bg-paper/95">
+  <div class="shell flex h-16 items-center justify-between gap-6">
+    <a href="/" class="font-display text-lg tracking-tight text-ink" aria-label={`${site.name} — home`}>
+      {site.shortName}<span class="text-accent">.</span>
+    </a>
+
+    <nav aria-label="メインナビ" class="flex items-center gap-6">
+      <ul class="hidden items-center gap-6 sm:flex">
+        {nav.map((item) => (
+          <li>
+            <a href={item.href} class="label link hover:text-ink">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

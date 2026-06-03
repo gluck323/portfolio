@@ -1,17 +1,113 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import WorkItem from '../components/WorkItem.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import SlideEmbed from '../components/SlideEmbed.astro';
+import Timeline from '../components/Timeline.astro';
+import About from '../components/About.astro';
+import { getNoteArticles } from '../lib/note';
+import { site } from '../data/site';
+import { achievements as achievementsData } from '../data/achievements';
+import { talks as talksData } from '../data/talks';
 
+const work = (await getCollection('work'))
+  .filter((w) => !w.data.draft)
+  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.order - b.data.order);
+
+const talks = [...talksData].sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+const achievements = [...achievementsData].sort(
+  (a, b) => +new Date(b.date) - +new Date(a.date)
+);
+
+const articles = await getNoteArticles(6);
+
+function ymd(d: string | Date) {
+  const x = new Date(d);
+  const p = (n: number) => String(n).padStart(2, '0');
+  return `${x.getFullYear()}.${p(x.getMonth() + 1)}.${p(x.getDate())}`;
+}
 ---
+<BaseLayout>
+  <Hero />
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <!-- Work -->
+  <section id="work" class="section shell scroll-mt-20">
+    <SectionHeading label="01 — Selected Work" title="作ったもの" meta={`${work.length} projects`} />
+    {work.length > 0 ? (
+      work.map((entry, i) => <WorkItem entry={entry} num={i + 1} />)
+    ) : (
+      <p class="label">準備中。</p>
+    )}
+  </section>
+
+  <!-- Writing -->
+  <section id="writing" class="section shell scroll-mt-20">
+    <SectionHeading label="02 — Writing" title="書いたもの" meta="note" />
+    <div class="grid grid-cols-1 gap-x-12 md:grid-cols-2">
+      {articles.map((a) => <ArticleCard {...a} />)}
+    </div>
+    {site.socials.find((s) => s.label === 'note') && (
+      <a href={site.socials.find((s) => s.label === 'note')!.href} target="_blank" rel="noopener noreferrer" class="label link mt-10 inline-block hover:text-ink">
+        View all on note →
+      </a>
+    )}
+  </section>
+
+  <!-- Speaking -->
+  {talks.length > 0 && (
+    <section id="speaking" class="section shell scroll-mt-20">
+      <SectionHeading label="Speaking" title="話したこと" meta={`${talks.length} talks`} />
+      <div class="space-y-16">
+        {talks.map((t) => (
+          <div class="grid grid-cols-12 gap-x-6 gap-y-5">
+            <div class="col-span-12 md:col-span-4">
+              <p class="label">{ymd(t.date)}</p>
+              <h3 class="mt-3 text-xl md:text-2xl">{t.title}</h3>
+              <p class="label mt-2">{t.event}</p>
+              {t.eventUrl && (
+                <a href={t.eventUrl} target="_blank" rel="noopener noreferrer" class="label link mt-3 inline-block hover:text-ink">Event ↗</a>
+              )}
+            </div>
+            <div class="col-span-12 md:col-span-8">
+              <SlideEmbed provider={t.provider} embedUrl={t.embedUrl} title={t.title} ratio={t.ratio} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Achievements -->
+  {achievements.length > 0 && (
+    <section id="recognition" class="section shell scroll-mt-20">
+      <SectionHeading label="03 — Recognition" title="実績" />
+      <Timeline items={achievements} />
+    </section>
+  )}
+
+  <!-- About -->
+  <section id="about" class="section shell scroll-mt-20">
+    <SectionHeading label="04 — About" title="自己紹介" />
+    <About />
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section shell scroll-mt-20">
+    <div class="border-t border-rule pt-10">
+      <p class="label">05 — Contact</p>
+      <p class="mt-6 max-w-[16ch] font-display text-4xl leading-tight text-ink md:text-6xl">
+        Let’s talk<span class="text-accent">.</span>
+      </p>
+      <a href={`mailto:${site.email}`} class="link mt-8 inline-block text-lg text-ink md:text-xl">{site.email}</a>
+      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+        {site.socials.map((s) => (
+          <li><a href={s.href} target="_blank" rel="noopener noreferrer" class="label link hover:text-ink">{s.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

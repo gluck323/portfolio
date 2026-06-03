@@ -1,0 +1,40 @@
+---
+import type { Achievement } from '../data/achievements';
+
+interface Props {
+  items: Achievement[];
+}
+const { items } = Astro.props;
+
+const typeLabel: Record<string, string> = {
+  award: 'Award',
+  talk: 'Talk',
+  contribution: 'Writing',
+  other: '—',
+};
+function year(d: string) {
+  return new Date(d).getFullYear();
+}
+---
+<ol class="border-t border-rule">
+  {items.map((it) => (
+    <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-b border-rule py-6">
+      <div class="col-span-3 md:col-span-2">
+        <span class="font-display text-accent">{year(it.date)}</span>
+      </div>
+      <div class="col-span-9 md:col-span-2">
+        <span class="label">{typeLabel[it.type] ?? '—'}</span>
+      </div>
+      <div class="col-span-12 md:col-span-8">
+        <p class="text-ink">
+          {it.url ? (
+            <a href={it.url} target="_blank" rel="noopener noreferrer" class="link">{it.title}</a>
+          ) : (
+            it.title
+          )}
+        </p>
+        {it.org && <p class="label mt-1">{it.org}</p>}
+      </div>
+    </li>
+  ))}
+</ol>

@@ -1,5 +1,5 @@
 {
-  "name": "retrograde-ring",
+  "name": "portfolio",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -9,9 +9,18 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "new:work": "node scripts/new-work.mjs",
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.4.3"
+    "@astrojs/sitemap": "^3.7.3",
+    "@fontsource-variable/crimson-pro": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource/noto-sans-jp": "^5.2.9",
+    "@fontsource/noto-serif-jp": "^5.2.8",
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.4.3",
+    "fast-xml-parser": "^5.8.0",
+    "tailwindcss": "^4.3.0"
   }
 }

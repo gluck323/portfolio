@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Image } from 'astro:assets';
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  num: number;
+}
+const { entry, num } = Astro.props;
+const { title, summary, year, cover, demoUrl, repoUrl, tech } = entry.data;
+const numStr = String(num).padStart(2, '0');
+const href = `/work/${entry.id}`;
+---
+<article class="group grid grid-cols-12 gap-x-6 gap-y-5 border-t border-rule py-10 md:py-14">
+  <div class="col-span-12 md:col-span-1">
+    <span class="index-num">{numStr}</span>
+  </div>
+
+  <div class="col-span-12 md:col-span-7">
+    <h3 class="text-2xl md:text-3xl">
+      <a href={href} class="link decoration-clone">{title}</a>
+    </h3>
+    <p class="measure mt-3 text-muted">{summary}</p>
+
+    {tech.length > 0 && (
+      <ul class="mt-5 flex flex-wrap gap-2">
+        {tech.map((t) => (
+          <li class="border border-rule px-2.5 py-1 text-xs text-muted" style="border-radius: 2px;">{t}</li>
+        ))}
+      </ul>
+    )}
+
+    <div class="mt-5 flex flex-wrap gap-x-5 gap-y-1">
+      {demoUrl && <a href={demoUrl} target="_blank" rel="noopener noreferrer" class="label link hover:text-ink">Live ↗</a>}
+      {repoUrl && <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="label link hover:text-ink">Code ↗</a>}
+      <a href={href} class="label link hover:text-ink">Detail →</a>
+    </div>
+  </div>
+
+  <div class="col-span-12 md:col-span-4">
+    {cover ? (
+      <a href={href} class="block overflow-hidden border border-rule" style="border-radius: 2px;">
+        <Image src={cover} alt={title} width={720} height={450} class="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]" />
+      </a>
+    ) : (
+      <a href={href} class="flex aspect-[16/10] items-center justify-center border border-rule text-muted" style="border-radius: 2px;">
+        <span class="label">{year ?? 'View'}</span>
+      </a>
+    )}
+  </div>
+</article>
