@@ -4,7 +4,7 @@
 
 ## これは何か
 **Kota Takahashi の個人ポートフォリオサイト。** ゲーム制作・映像制作・Webアプリ制作の作品、note記事、これまでの実績を1か所に集約する。
-公開先は **Cloudflare Pages（`dolphy.pages.dev`）の静的サイト**。独自ドメインは当面なし。
+公開先は **Cloudflare Pages（`dolphy-1e7.pages.dev`）の静的サイト**。独自ドメインは当面なし。
 
 最重要の前提: **「いかにもAIが量産したVibe Codingっぽい見た目」を避ける**こと。方向性は**エディトリアル／タイポグラフィ主導**。デザインを変更・追加するときは必ず [DESIGN.md](DESIGN.md) の規則と禁止リストに従う。
 
