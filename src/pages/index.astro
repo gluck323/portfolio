@@ -103,11 +103,6 @@ function ymd(d: string | Date) {
         Let’s talk<span class="text-accent">.</span>
       </p>
       <a href={`mailto:${site.email}`} class="link mt-8 inline-block text-lg text-ink md:text-xl">{site.email}</a>
-      <ul class="mt-8 flex flex-wrap gap-x-6 gap-y-2">
-        {site.socials.map((s) => (
-          <li><a href={s.href} target="_blank" rel="noopener noreferrer" class="label link hover:text-ink">{s.label}</a></li>
-        ))}
-      </ul>
     </div>
   </section>
 </BaseLayout>
