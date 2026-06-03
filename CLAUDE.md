@@ -22,17 +22,18 @@ npm run build                       # 本番ビルド（dist/）。note記事も
 npm run preview                     # dist を配信して確認
 npm run new:work <slug> "タイトル"   # 作品ページの雛形を生成
 ```
+編集UI(Keystatic): `npm run dev` 起動中に **http://localhost:4321/keystatic** で site/実績/登壇をフォーム編集（dev時のみ有効・本番は静的）。
+
 デプロイ: **GitHubにpushすると自動**（Cloudflare Workers(静的アセット) を `gluck323/portfolio` にGit連携、production branch=main）。手動の再デプロイは Cloudflareダッシュボード → 該当プロジェクト → Deployments から。本番URL: https://dolphythewolf.m1sum1.workers.dev
 
 > ⚠️ デプロイ設定は [wrangler.jsonc](wrangler.jsonc)（`dist` を静的アセットとして配信）。**`@astrojs/cloudflare` アダプタは入れないこと**。入れるとSSR化＋KVセッションのプロビジョニングでビルドが失敗する（静的のままにする）。`wrangler.jsonc` の `name` は Worker名 `dolphythewolf` と一致させる。
 
 ## どこを編集するか（コンテンツ）
 **まず [CONTENT.md](CONTENT.md) を読む。** 要点:
-- 実績(Recognition) … [src/data/achievements.ts](src/data/achievements.ts)（配列を編集。日付降順に自動）
-- 登壇(Speaking) … [src/data/talks.ts](src/data/talks.ts)（空ならセクション非表示）
-- 作品(Work) … `src/content/work/<slug>.md`（本文ありMarkdown。雛形は `_template.md`）
-- プロフィール/SNS/Hero/note名 … [src/data/site.ts](src/data/site.ts)
-- 自己紹介文 … [src/components/About.astro](src/components/About.astro)
+- 実績(Recognition) … **/keystatic の「実績」** or [src/data/cms/achievements.json](src/data/cms/achievements.json)（日付降順に自動）
+- 登壇(Speaking) … **/keystatic の「登壇」** or [src/data/cms/talks.json](src/data/cms/talks.json)（空ならセクション非表示）
+- 作品(Work) … `src/content/work/<slug>.md`（本文ありMarkdown。雛形は `_template.md`。※エディタ未対応）
+- プロフィール/SNS/Hero/About文/note名 … **/keystatic の「サイト設定」** or [src/data/cms/site.json](src/data/cms/site.json)。`src/data/*.ts` はそのJSONを読む薄いラッパー（ナビ`nav`と`locale`のみコード側）
 - note記事 … 自動取得（`site.ts` の `noteUsername` → [src/lib/note.ts](src/lib/note.ts)、失敗時 `src/data/noteFallback.ts`）
 
 ## どこを編集するか（構造・見た目）
@@ -52,10 +53,11 @@ npm run new:work <slug> "タイトル"   # 作品ページの雛形を生成
 ## 現在のコンテンツ状態
 - Work: 「IIDX HOTOKE ARENA S2 特設サイト」1件（featured）。
 - Recognition: 8件（音GEN寄稿 / 早慶戦ロゴ監修 / Bemani Keio Meister / オトゲラボ取材 / BBD MAGAZINE寄稿 / 楽曲リリース / IR PV / ランキングツール）。
-- Speaking: 0件（`talks.ts` が空なので非表示）。
+- Speaking: 0件（`talks.json` が空なので非表示）。
 - note: `japanese_goblin` から自動取得。
 
 ## 既知の小メモ
+- 編集UI(Keystatic)は **dev時のみ有効**（[astro.config.mjs](astro.config.mjs) で `NODE_ENV` ゲート、`@astrojs/react`+`@keystatic/astro`）。本番ビルドからは外れ静的のまま。データは `src/data/cms/*.json`、定義は [keystatic.config.ts](keystatic.config.ts)。storageは `local`（手元編集）。後でGitHubクラウド編集に拡張可。
 - Footerの年は手動の固定値（[src/components/Footer.astro](src/components/Footer.astro) の `year`）。年が変わったら更新。
 - 作品の画像は未設定（文字プレースホルダー表示）。`src/assets/work/` に置き frontmatter の `cover:` を有効化すると最適化表示。
 - OGP画像 `public/og-default.png` は未配置（SNS共有の見栄え用に1200×630を置くと良い）。

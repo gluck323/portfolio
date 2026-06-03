@@ -1,0 +1,16 @@
+{
+  "name": "Kota Takahashi",
+  "shortName": "Kota Takahashi",
+  "tagline": "Games, Film\n& Web Apps",
+  "intro": "ゲーム、映像、Webアプリをつくっています。",
+  "description": "Kota Takahashi のポートフォリオ。ゲーム制作・映像制作・Webアプリケーション制作と、note記事・実績をまとめています。",
+  "email": "m1sum1@sky-po.net",
+  "noteUsername": "japanese_goblin",
+  "socials": [
+    { "label": "GitHub", "href": "https://github.com/gluck323" },
+    { "label": "note", "href": "https://note.com/japanese_goblin" }
+  ],
+  "aboutLead": "Kota Takahashi は、ゲーム・映像・Webアプリをつくる制作者です。",
+  "aboutBody": "音楽ゲームのコミュニティを軸に、大会の特設サイトやプロモーション映像、ロゴ、楽曲まで、つくれるものは自分で形にしてきました。\n\n作ったもの（Work）、書いたもの（Writing / note）、これまでの実績（Recognition）をこのサイトに集約しています。",
+  "focus": ["Game Development", "Film & Video", "Web Applications"]
+}

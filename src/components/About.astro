@@ -1,30 +1,22 @@
 ---
 import { site } from '../data/site';
-// TODO(ヒアリング): 本文を本人の経歴・関心に差し替え
+const paragraphs = (site.aboutBody ?? '')
+  .split(/\n{2,}/)
+  .map((s) => s.trim())
+  .filter(Boolean);
 ---
 <div class="grid grid-cols-12 gap-x-6 gap-y-10">
   <div class="col-span-12 md:col-span-7 md:col-start-1">
-    <p class="font-display text-2xl leading-snug text-ink md:text-[2rem]">
-      {site.name} は、ゲーム・映像・Webアプリをつくる<span class="text-accent">制作者</span>です。
-    </p>
+    <p class="font-display text-2xl leading-snug text-ink md:text-[2rem]">{site.aboutLead}</p>
     <div class="measure mt-8 space-y-4 text-muted">
-      <p>
-        音楽ゲームのコミュニティを軸に、大会の特設サイトやプロモーション映像、
-        ロゴ、楽曲まで、つくれるものは自分で形にしてきました。
-      </p>
-      <p>
-        作ったもの（Work）、書いたもの（Writing / note）、これまでの実績（Recognition）を
-        このサイトに集約しています。<span class="text-muted">※本文は自由に書き換えてください。</span>
-      </p>
+      {paragraphs.map((p) => <p>{p}</p>)}
     </div>
   </div>
 
   <div class="col-span-12 md:col-span-4 md:col-start-9">
     <p class="label">Focus</p>
     <ul class="mt-4 space-y-2 text-muted">
-      <li>Game Development</li>
-      <li>Film &amp; Video</li>
-      <li>Web Applications</li>
+      {site.focus.map((f) => <li>{f}</li>)}
     </ul>
     <p class="label mt-8">Elsewhere</p>
     <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2">
