@@ -4,7 +4,7 @@
 
 ## これは何か
 **Kota Takahashi の個人ポートフォリオサイト。** ゲーム制作・映像制作・Webアプリ制作の作品、note記事、これまでの実績を1か所に集約する。
-公開先は **Cloudflare Pages（`dolphythewolf.pages.dev`）の静的サイト**。独自ドメインは当面なし。
+公開先は **Cloudflare（Workers／静的アセット, `dolphythewolf.m1sum1.workers.dev`）の静的サイト**。独自ドメインは当面なし。
 
 最重要の前提: **「いかにもAIが量産したVibe Codingっぽい見た目」を避ける**こと。方向性は**エディトリアル／タイポグラフィ主導**。デザインを変更・追加するときは必ず [DESIGN.md](DESIGN.md) の規則と禁止リストに従う。
 
@@ -22,7 +22,7 @@ npm run build                       # 本番ビルド（dist/）。note記事も
 npm run preview                     # dist を配信して確認
 npm run new:work <slug> "タイトル"   # 作品ページの雛形を生成
 ```
-デプロイ: **GitHubにpushすると自動**（Cloudflare Pages を `gluck323/portfolio` にGit連携、production branch=main）。手動で出すなら `npm run build` → `npx wrangler pages deploy dist --project-name dolphythewolf`。
+デプロイ: **GitHubにpushすると自動**（Cloudflare Workers(静的アセット) を `gluck323/portfolio` にGit連携、production branch=main）。手動の再デプロイは Cloudflareダッシュボード → 該当プロジェクト → Deployments から。本番URL: https://dolphythewolf.m1sum1.workers.dev
 
 ## どこを編集するか（コンテンツ）
 **まず [CONTENT.md](CONTENT.md) を読む。** 要点:
