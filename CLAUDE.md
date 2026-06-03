@@ -24,6 +24,8 @@ npm run new:work <slug> "タイトル"   # 作品ページの雛形を生成
 ```
 デプロイ: **GitHubにpushすると自動**（Cloudflare Workers(静的アセット) を `gluck323/portfolio` にGit連携、production branch=main）。手動の再デプロイは Cloudflareダッシュボード → 該当プロジェクト → Deployments から。本番URL: https://dolphythewolf.m1sum1.workers.dev
 
+> ⚠️ デプロイ設定は [wrangler.jsonc](wrangler.jsonc)（`dist` を静的アセットとして配信）。**`@astrojs/cloudflare` アダプタは入れないこと**。入れるとSSR化＋KVセッションのプロビジョニングでビルドが失敗する（静的のままにする）。`wrangler.jsonc` の `name` は Worker名 `dolphythewolf` と一致させる。
+
 ## どこを編集するか（コンテンツ）
 **まず [CONTENT.md](CONTENT.md) を読む。** 要点:
 - 実績(Recognition) … [src/data/achievements.ts](src/data/achievements.ts)（配列を編集。日付降順に自動）
