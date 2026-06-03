@@ -20,9 +20,9 @@
       "href": "https://x.com/sbymsm"
     }
   ],
-  "aboutLead": "こんにちは。",
-  "aboutBody": "作ったもの（Work）、書いたもの（Writing / note）、これまでの実績（Recognition）をこのサイトに集約しています。",
-  "avatar": null,
+  "avatar": "/images/profile/avatar.png",
+  "aboutLead": "Kota Takahashi",
+  "aboutBody": "2002年、北海道にて生誕。\n\n血液型はO型。生の海鮮が苦手。\n\n作ったものや書いたもの、これまでの実績をこのサイトに集約しています。",
   "tools": [
     "Unity",
     "AfterEffects",

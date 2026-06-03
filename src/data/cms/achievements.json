@@ -15,13 +15,6 @@
       "url": "https://x.com/sk_battle_/status/1972114926329303349"
     },
     {
-      "title": "Webアプリーケーション「Bemani Keio Meister」をリリース",
-      "date": "2025-07-26",
-      "type": "other",
-      "org": "早慶戦用対策アプリーケーション",
-      "url": "https://sky-po.net/iidx-score-manager/public/index.html"
-    },
-    {
       "title": "部誌創刊号「BBD MAGAZINE 2024 Autamn」に寄稿",
       "date": "2024-10-01",
       "type": "contribution",
@@ -47,6 +40,12 @@
       "type": "other",
       "org": "KBD HOTOKE ARENA SEASON2",
       "url": "https://iidx-hotoke-arena.vercel.app/"
+    },
+    {
+      "title": "大学入学",
+      "date": "2022-04-01",
+      "type": "award",
+      "org": "Hosei University"
     }
   ]
 }
