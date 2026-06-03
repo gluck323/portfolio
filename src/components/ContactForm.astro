@@ -1,0 +1,66 @@
+---
+import { site } from '../data/site';
+const key = site.contactFormKey?.trim();
+---
+{key ? (
+  <form id="contact-form" class="mt-10 max-w-xl">
+    <input type="hidden" name="access_key" value={key} />
+    <input type="hidden" name="subject" value="Portfolio — お問い合わせ" />
+    <input type="hidden" name="from_name" value={site.name} />
+    <!-- ハニーポット（スパム対策・人間には不可視） -->
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true" />
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      <label class="block">
+        <span class="label">Name</span>
+        <input name="name" type="text" required autocomplete="name" class="cf-input" />
+      </label>
+      <label class="block">
+        <span class="label">Email</span>
+        <input name="email" type="email" required autocomplete="email" class="cf-input" />
+      </label>
+    </div>
+    <label class="mt-6 block">
+      <span class="label">Message</span>
+      <textarea name="message" rows="5" required class="cf-input resize-y"></textarea>
+    </label>
+
+    <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+      <button type="submit" class="btn">Send</button>
+      <p id="form-status" class="label" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+) : (
+  <p class="measure mt-6 text-sm text-muted">お問い合わせフォームは準備中です。当面は上のメールへご連絡ください。</p>
+)}
+
+<script>
+  function setupContactForm() {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = 'true';
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (status) status.textContent = '送信中…';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const json = await res.json();
+        if (json.success) {
+          form.reset();
+          if (status) status.textContent = '送信しました。ありがとうございます。';
+        } else if (status) {
+          status.textContent = '送信に失敗しました。メールでご連絡ください。';
+        }
+      } catch {
+        if (status) status.textContent = 'エラーが発生しました。メールでご連絡ください。';
+      }
+    });
+  }
+  document.addEventListener('astro:page-load', setupContactForm);
+  setupContactForm();
+</script>

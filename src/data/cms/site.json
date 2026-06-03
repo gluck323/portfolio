@@ -1,5 +1,5 @@
 {
-  "name": "Kota Takahashi",
+  "name": "Works",
   "shortName": "Works",
   "tagline": "Works",
   "intro": "過去制作物・実績まとめ",
@@ -20,7 +20,7 @@
       "href": "https://x.com/sbymsm"
     }
   ],
-  "avatar": "/images/profile/avatar.png",
+  "avatar": "/images/profile/avatar.jpg",
   "aboutLead": "Kota Takahashi",
   "aboutBody": "2002年、北海道にて生誕。\n\n血液型はO型。生の海鮮が苦手。\n\n作ったものや書いたもの、これまでの実績をこのサイトに集約しています。",
   "tools": [
@@ -31,5 +31,6 @@
     "VScode",
     "Claude Code",
     "Audacity"
-  ]
+  ],
+  "contactFormKey": ""
 }

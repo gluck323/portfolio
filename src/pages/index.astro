@@ -8,6 +8,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 import SlideEmbed from '../components/SlideEmbed.astro';
 import Timeline from '../components/Timeline.astro';
 import About from '../components/About.astro';
+import ContactForm from '../components/ContactForm.astro';
 import { getNoteArticles } from '../lib/note';
 import { site } from '../data/site';
 import { achievements as achievementsData } from '../data/achievements';
@@ -103,6 +104,7 @@ function ymd(d: string | Date) {
         Let’s talk<span class="text-accent">.</span>
       </p>
       <a href={`mailto:${site.email}`} class="link mt-8 inline-block text-lg text-ink md:text-xl">{site.email}</a>
+      <ContactForm />
     </div>
   </section>
 </BaseLayout>

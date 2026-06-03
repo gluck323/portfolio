@@ -125,4 +125,14 @@
   .prose-editorial blockquote { @apply border-l-2 border-accent pl-5 text-muted italic; }
   .prose-editorial code { @apply bg-ink/5 px-1.5 py-0.5 text-[0.9em]; border-radius: 2px; }
   .prose-editorial img { @apply my-8 border border-rule; border-radius: 2px; }
+
+  /* お問い合わせフォームの入力欄（エディトリアル・最小） */
+  .cf-input {
+    @apply mt-2 w-full border border-rule bg-transparent px-3.5 py-2.5 text-ink;
+    border-radius: 2px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease;
+  }
+  .cf-input::placeholder { color: var(--muted); }
+  .cf-input:focus { outline: none; border-color: var(--accent); }
 }

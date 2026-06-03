@@ -17,6 +17,7 @@ export interface SiteData {
   aboutLead: string;
   aboutBody: string;
   tools: string[];
+  contactFormKey: string; // Web3Forms access key（空ならフォーム非表示）
   locale: string;
 }
 

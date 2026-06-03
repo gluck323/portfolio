@@ -53,6 +53,10 @@ export default config({
         description: fields.text({ label: 'メタ説明（検索結果/OGP）', multiline: true }),
         email: fields.text({ label: '公開メール' }),
         noteUsername: fields.text({ label: 'note ユーザー名（記事を自動取得）' }),
+        contactFormKey: fields.text({
+          label: 'お問い合わせフォーム: Web3Forms Access Key',
+          description: 'web3forms.com で無料取得したキー。空欄ならフォームは非表示（メールのみ）',
+        }),
         socials: fields.array(
           fields.object({
             label: fields.text({ label: 'ラベル（例: GitHub）' }),

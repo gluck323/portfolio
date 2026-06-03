@@ -88,6 +88,13 @@ npm run new:work iidx-arena-s3 "IIDX HOTOKE ARENA S3 特設サイト"
 
 デザインの決まりごとは [DESIGN.md](DESIGN.md)。色やフォントは [src/styles/global.css](src/styles/global.css) のトークン（`--accent` など）を編集。
 
+## 7. お問い合わせフォーム（任意）
+
+静的サイトのまま動くフォーム（**Web3Forms**・無料・サーバー不要）。
+1. https://web3forms.com で自分のメールを入れて **Access Key** を無料取得
+2. `/keystatic` →「サイト設定」→ **「お問い合わせフォーム: Web3Forms Access Key」** にキーを貼って保存
+3. → Contact にフォームが表示され、送信は自分のメールに届く（空欄なら非表示）
+
 ---
 
 ## 確認と公開
