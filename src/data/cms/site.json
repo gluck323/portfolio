@@ -6,6 +6,7 @@
   "description": "過去制作物や実績をまとめています。",
   "email": "m1sum1@sky-po.net",
   "noteUsername": "japanese_goblin",
+  "contactFormKey": "d59375b5-6fc5-4823-adde-fd55b7fa2a8a",
   "socials": [
     {
       "label": "GitHub",
@@ -31,6 +32,5 @@
     "VScode",
     "Claude Code",
     "Audacity"
-  ],
-  "contactFormKey": ""
+  ]
 }
