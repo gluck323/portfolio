@@ -32,7 +32,7 @@ const ogImage = new URL(image, Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
-<html lang={site.locale}>
+<html lang={site.locale} class="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,24 +57,6 @@ const ogImage = new URL(image, Astro.site ?? Astro.url).href;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- ダークモードのFOUC防止（paint前にクラス適用）＋トグルの委譲ハンドラ -->
-    <script is:inline>
-      (() => {
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const dark = saved ? saved === 'dark' : prefersDark;
-        document.documentElement.classList.toggle('dark', dark);
-      })();
-      // document に委譲（View Transitionsでbodyが入れ替わっても有効）
-      document.addEventListener('click', (e) => {
-        const btn = e.target.closest('[data-theme-toggle]');
-        if (!btn) return;
-        const isDark = document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        btn.setAttribute('aria-pressed', String(isDark));
-      });
-    </script>
-
     <ClientRouter />
   </head>
   <body>
@@ -84,15 +66,5 @@ const ogImage = new URL(image, Astro.site ?? Astro.url).href;
       <slot />
     </main>
     <Footer />
-
-    <!-- View Transitions後にテーマを再適用 -->
-    <script is:inline>
-      document.addEventListener('astro:after-swap', () => {
-        const saved = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const dark = saved ? saved === 'dark' : prefersDark;
-        document.documentElement.classList.toggle('dark', dark);
-      });
-    </script>
   </body>
 </html>

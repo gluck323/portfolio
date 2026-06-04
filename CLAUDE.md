@@ -18,11 +18,12 @@
 ## コマンド
 ```bash
 npm run dev                         # http://localhost:4321 プレビュー
+npm run studio                      # dev + 自動push（/keystaticで保存→自動commit&push→自動デプロイ）
 npm run build                       # 本番ビルド（dist/）。note記事もここで取得
 npm run preview                     # dist を配信して確認
 npm run new:work <slug> "タイトル"   # 作品ページの雛形を生成
 ```
-編集UI(Keystatic): `npm run dev` 起動中に **http://localhost:4321/keystatic** で site/実績/登壇をフォーム編集（dev時のみ有効・本番は静的）。
+編集UI(Keystatic): `npm run dev`（または `npm run studio`）起動中に **http://localhost:4321/keystatic** で work/site/実績/登壇をフォーム編集（dev時のみ有効・本番は静的）。`studio` ならコンテンツ保存で自動公開（[scripts/auto-push.mjs](scripts/auto-push.mjs) が `src/data/cms` `src/content/work` `public/images` を監視）。
 
 デプロイ: **GitHubにpushすると自動**（Cloudflare Workers(静的アセット) を `gluck323/portfolio` にGit連携、production branch=main）。手動の再デプロイは Cloudflareダッシュボード → 該当プロジェクト → Deployments から。本番URL: https://dolphythewolf.m1sum1.workers.dev
 
@@ -48,7 +49,8 @@ npm run new:work <slug> "タイトル"   # 作品ページの雛形を生成
 ## デザインの鉄則（変更時は必ず守る）
 - **禁止**: グラデーション / 絵文字 / Interを見出しに単体使用 / ガラスモーフィズム / Bentoグリッド / 3カード横並び / プログレスバー / `rounded-lg`以上 / `shadow-md`以上 / 全セクション中央寄せ / 誇張コピー
 - 色は3トークン（`paper`/`ink`/`accent`=テラコッタ `#8B3A2F`）のみ。見出しはセリフ・左揃え・非対称グリッド・余白で見せる。
-- **変更後の監査**: `gradient` `rounded-lg` `rounded-full` `shadow-md` `backdrop-blur` `text-center` と絵文字を grep して混入していないか確認（`linear-gradient(var(--accent),var(--accent))` は下線アニメ用の単色なので例外）。
+- **カラーモードはダーク固定**（`<html class="dark">`、トグルなし）。
+- **変更後の監査**: `gradient` `rounded-lg` `rounded-full` `shadow-md` `backdrop-blur` `text-center` と絵文字を grep して混入していないか確認。例外＝下線アニメの単色 `linear-gradient(var(--accent),var(--accent))` と、Heroマーキーの端フェード `mask-image: linear-gradient(...)`（色の塗りではなくマスク）。
 
 ## 現在のコンテンツ状態
 - Work: 「IIDX HOTOKE ARENA S2 特設サイト」1件（featured）。

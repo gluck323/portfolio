@@ -1,23 +1,33 @@
 ---
 import { site } from '../data/site';
+import HeroMarquee from './HeroMarquee.astro';
+
+interface Props {
+  covers?: string[];
+}
+const { covers = [] } = Astro.props;
 const lines = site.tagline.split('\n');
 ---
-<section class="shell pt-20 pb-24 md:pt-32 md:pb-36">
-  <p class="label">Portfolio</p>
+<section class="relative isolate overflow-hidden">
+  <HeroMarquee covers={covers} />
 
-  <h1
-    class="mt-6 max-w-[14ch] font-display font-normal tracking-[-0.02em] text-ink"
-    style="font-size: clamp(2.75rem, 8vw, 6.5rem); line-height: 1.04;"
-  >
-    {lines.map((line, i) => (
-      <span class="block">{i === lines.length - 1 ? <>{line}<span class="text-accent">.</span></> : line}</span>
-    ))}
-  </h1>
+  <div class="shell relative z-10 pt-20 pb-44 md:pt-28 md:pb-56" style="min-height: 82vh;">
+    <p class="label">Portfolio</p>
 
-  <p class="measure mt-8 text-lg text-muted md:text-xl">{site.intro}</p>
+    <h1
+      class="mt-6 max-w-[14ch] font-display font-normal tracking-[-0.02em] text-ink"
+      style="font-size: clamp(2.75rem, 8vw, 6.5rem); line-height: 1.04;"
+    >
+      {lines.map((line, i) => (
+        <span class="block">{i === lines.length - 1 ? <>{line}<span class="text-accent">.</span></> : line}</span>
+      ))}
+    </h1>
 
-  <div class="mt-10 flex flex-wrap items-center gap-4">
-    <a href="#work" class="btn">Selected Work</a>
-    <a href="#contact" class="label link hover:text-ink">Get in touch</a>
+    <p class="measure mt-8 text-lg text-muted md:text-xl">{site.intro}</p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <a href="#work" class="btn">Selected Work</a>
+      <a href="#contact" class="label link hover:text-ink">Get in touch</a>
+    </div>
   </div>
 </section>

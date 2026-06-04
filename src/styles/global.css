@@ -135,4 +135,49 @@
   }
   .cf-input::placeholder { color: var(--muted); }
   .cf-input:focus { outline: none; border-color: var(--accent); }
+
+  /* Hero 背景: 薄く横に流れる作品サムネ（装飾） */
+  .hero-marquee {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: clamp(170px, 38vh, 320px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    /* 両端をフェード（色の塗りではなくマスク） */
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
+  }
+  .hero-marquee__track {
+    display: flex;
+    gap: 1.25rem;
+    width: max-content;
+    opacity: 0.14;
+    animation: hero-marquee 75s linear infinite;
+    will-change: transform;
+  }
+  .hero-marquee__tile {
+    flex: 0 0 auto;
+    width: clamp(200px, 24vw, 320px);
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  .hero-marquee__tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(0.95);
+  }
+}
+
+@keyframes hero-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee__track { animation: none; }
 }

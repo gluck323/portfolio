@@ -7,6 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "studio": "concurrently -k -n dev,publish -c cyan,magenta \"astro dev\" \"node scripts/auto-push.mjs\"",
+    "autopush": "node scripts/auto-push.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "new:work": "node scripts/new-work.mjs",
@@ -31,6 +33,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.2.16",
-    "@types/react-dom": "^19.2.3"
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^10.0.3"
   }
 }

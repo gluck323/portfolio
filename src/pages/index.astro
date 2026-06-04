@@ -14,9 +14,18 @@ import { site } from '../data/site';
 import { achievements as achievementsData } from '../data/achievements';
 import { talks as talksData } from '../data/talks';
 
+// year（"YYYY" / "YYYY.MM"）を比較用の数値キーに（新しい順に自動整列）
+function yearKey(y: string | number | undefined): number {
+  const [yr, mo] = String(y ?? '').split(/[.\-/]/);
+  return (parseInt(yr, 10) || 0) * 100 + (parseInt(mo, 10) || 0);
+}
+
 const work = (await getCollection('work'))
   .filter((w) => !w.data.draft)
-  .sort((a, b) => Number(b.data.featured) - Number(a.data.featured) || a.data.order - b.data.order);
+  .sort((a, b) => yearKey(b.data.year) - yearKey(a.data.year) || a.data.order - b.data.order);
+
+// Hero 背景のサムネ（cover を設定済みの作品）
+const covers = work.map((w) => w.data.cover).filter((c): c is string => !!c);
 
 const talks = [...talksData].sort((a, b) => +new Date(b.date) - +new Date(a.date));
 
@@ -33,7 +42,7 @@ function ymd(d: string | Date) {
 }
 ---
 <BaseLayout>
-  <Hero />
+  <Hero covers={covers} />
 
   <!-- Work -->
   <section id="work" class="section shell scroll-mt-20">

@@ -1,0 +1,25 @@
+---
+// Hero 背景の、薄くゆっくり横に流れる作品サムネ（装飾・aria-hidden）。
+interface Props {
+  covers: string[];
+}
+const { covers } = Astro.props;
+
+// 枚数が少ない時は繰り返して最低12枚に。さらに2セット並べてシームレスにループ。
+let tiles: string[] = [];
+if (covers.length) {
+  while (tiles.length < 12) tiles = tiles.concat(covers);
+}
+const loop = [...tiles, ...tiles];
+---
+{loop.length > 0 && (
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="hero-marquee__track">
+      {loop.map((src) => (
+        <div class="hero-marquee__tile">
+          <img src={src} alt="" loading="lazy" decoding="async" />
+        </div>
+      ))}
+    </div>
+  </div>
+)}
