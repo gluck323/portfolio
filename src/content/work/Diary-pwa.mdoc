@@ -5,11 +5,27 @@ year: '2026.02'
 cover: /images/work/Diary-pwa/cover.png
 repoUrl: https://github.com/gluck323/Diary-pwa
 tech:
-  - Vite
+  - Next.js
   - React
-  - Tailwind
+  - TypeScript
+  - Tailwind CSS
+  - shadcn/ui
   - Vercel
 featured: false
 order: 2
 draft: false
 ---
+## 概要
+
+日々の出来事を投稿・閲覧していく、SNS のタイムラインのような UI の個人用日記アプリ。自分専用の記録ツールとして制作しました。
+
+投稿は日付ごとにカードでまとめて表示し、週カレンダーと月ピッカーで日付を辿れます。投稿には画像などのメディアやリンクを添付でき（リンクはプレビュー表示、画像はライトボックスで拡大）、ハッシュタグ・メディア一覧・検索・設定のタブで整理・閲覧できます。下部タブバーと FAB を備えたスマホアプリ風の操作感で、PWA としてホーム画面に追加して使えます。
+
+## 技術
+
+- **フレームワーク**: Next.js 15（App Router）+ React 19 + TypeScript
+- **スタイル / UI**: Tailwind CSS + shadcn/ui（Radix UI primitives・lucide-react アイコン）
+- **データ保存**: バックエンドを持たず、ブラウザのローカル保存（localStorage／メディアストア）に永続化するクライアント完結型
+- **PWA**: manifest を用意し、ホーム画面にインストール可能
+- **その他**: 動的 OGP 画像の生成（`/api/og`）
+- **デプロイ**: Vercel
