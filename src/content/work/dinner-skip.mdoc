@@ -13,3 +13,18 @@ featured: false
 order: 10
 draft: false
 ---
+## 概要
+
+iPhone のホーム画面アイコンからワンタップで、自作の Discord Bot を介して母親の個人 DM へ「今日は夕食いらない」と通知するためのパーソナル PWA。
+
+「夕飯いる／いらない」の連絡を、アプリを開いてメッセージを打つ手間なくボタン一つで済ませたい、という自分用の用途で制作しました。
+
+## 技術
+
+- **フロント**: Vite + React（赤いボタン一つのシンプルな UI と送信状態の管理）
+- **スタイル**: Tailwind CSS
+- **PWA 化**: vite-plugin-pwa（ホーム画面に追加してネイティブアプリのように起動できる）
+- **バックエンド**: Vercel Functions（Edge Runtime / TypeScript）経由で Discord Bot API を呼び出し DM を送信
+- **デプロイ**: Vercel
+
+Discord の BOT トークンはフロントに埋め込まず、Vercel の環境変数にのみ保持する構成にしています。
